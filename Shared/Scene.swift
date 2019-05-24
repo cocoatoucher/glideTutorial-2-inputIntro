@@ -28,6 +28,8 @@ class Scene: GlideScene {
         
         #if os(iOS)
         addEntity(moveLeftTouchButtonEntity)
+        addEntity(moveRightTouchButtonEntity)
+        addEntity(jumpTouchButtonEntity)
         #endif 
     }
     
@@ -65,26 +67,46 @@ class Scene: GlideScene {
     
     #if os(iOS)
     lazy var moveLeftTouchButtonEntity: GlideEntity = {
-        return touchButtonEntity()
+        return touchButtonEntity(with: "Move Left",
+                                 textureName: "button_move_left",
+                                 inputName: "Player1_Horizontal",
+                                 isNegative: true)
     }()
     
-    func touchButtonEntity() -> GlideEntity {
+    lazy var moveRightTouchButtonEntity: GlideEntity = {
+        return touchButtonEntity(with: "Move Right",
+                                 textureName: "button_move_right",
+                                 inputName: "Player1_Horizontal",
+                                 isNegative: false)
+    }()
+    
+    lazy var jumpTouchButtonEntity: GlideEntity = {
+        return touchButtonEntity(with: "Jump",
+                                 textureName: "button_jump",
+                                 inputName: "Player1_Jump",
+                                 isNegative: false)
+    }()
+    
+    func touchButtonEntity(with name: String, textureName: String, inputName: String, isNegative: Bool) -> GlideEntity {
         let entity = GlideEntity(initialNodePosition: CGPoint.zero)
-        entity.name = "Move Left"
+        entity.name = name
         entity.transform.usesProposedPosition = false
         
         let spriteNodeComponent = SpriteNodeComponent(nodeSize: CGSize(width: 120, height: 100))
-        spriteNodeComponent.spriteNode.texture = SKTexture(imageNamed: "button_move_left")
+        spriteNodeComponent.spriteNode.texture = SKTexture(imageNamed: textureName)
         spriteNodeComponent.zPositionContainer = GlideZPositionContainer.camera
         entity.addComponent(spriteNodeComponent)
         
-        let touchButtonComponent = TouchButtonComponent(spriteNode: spriteNodeComponent.spriteNode, input: .profiles([(name: "Player1_Horizontal", isNegative: true)]))
+        let touchButtonComponent = TouchButtonComponent(spriteNode: spriteNodeComponent.spriteNode, input: .profiles([(name: inputName, isNegative: isNegative)]))
         entity.addComponent(touchButtonComponent)
         
         return entity
     }
     
     func layoutTouchControls() {
+        
+        var moveLeftNodeWidth: CGFloat = 0.0
+        
         if let moveLeftNode = moveLeftTouchButtonEntity.component(ofType: SpriteNodeComponent.self)?.spriteNode {
             let margin: CGFloat = 30.0
             let nodePositionX = -size.width / 2 + moveLeftNode.size.width / 2 + margin
@@ -92,6 +114,27 @@ class Scene: GlideScene {
             let nodePosition = CGPoint(x: nodePositionX, y: nodePositionY)
             
             moveLeftTouchButtonEntity.transform.currentPosition = nodePosition
+            
+            moveLeftNodeWidth = moveLeftNode.size.width
+        }
+        
+        // Place on the left edge, next to move left button.
+        if let moveRightNode = moveRightTouchButtonEntity.component(ofType: SpriteNodeComponent.self)?.spriteNode {
+            let margin: CGFloat = 30.0
+            let nodePositionX = -size.width / 2 + moveRightNode.size.width / 2 + margin + moveLeftNodeWidth
+            let nodePositionY = -size.height / 2 + moveRightNode.size.height / 2 + margin
+            let nodePosition = CGPoint(x: nodePositionX, y: nodePositionY)
+            
+            moveRightTouchButtonEntity.transform.currentPosition = nodePosition
+        }
+        
+        // Place on the right edge of the screen.
+        if let jumpNode = jumpTouchButtonEntity.component(ofType: SpriteNodeComponent.self)?.spriteNode {
+            let margin: CGFloat = 30.0
+            let nodePositionX = size.width / 2 - jumpNode.size.width / 2 - margin
+            let nodePositionY = -size.height / 2 + jumpNode.size.height / 2 + margin
+            let nodePosition = CGPoint(x: nodePositionX, y: nodePositionY)
+            jumpTouchButtonEntity.transform.currentPosition = nodePosition
         }
     }
     #endif
