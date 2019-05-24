@@ -23,6 +23,9 @@ class TouchButtonComponent: GKComponent, GlideComponent, TouchReceiverComponent 
     
     var input: TouchInputProfilesOrCallback
     
+    var normalTexture: SKTexture?
+    var highlightedTexture: SKTexture?
+    
     init(spriteNode: SKSpriteNode, input: TouchInputProfilesOrCallback) {
         self.hitBoxNode = spriteNode
         self.input = input
@@ -31,5 +34,19 @@ class TouchButtonComponent: GKComponent, GlideComponent, TouchReceiverComponent 
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    open override func update(deltaTime seconds: TimeInterval) {
+        updateNodeTexture()
+    }
+    
+    func updateNodeTexture() {
+        let spriteNodeComponent = entity?.component(ofType: SpriteNodeComponent.self)
+        
+        if isHighlighted {
+            spriteNodeComponent?.spriteNode.texture = highlightedTexture
+        } else {
+            spriteNodeComponent?.spriteNode.texture = normalTexture
+        }
     }
 }

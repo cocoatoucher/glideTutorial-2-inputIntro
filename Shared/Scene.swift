@@ -93,11 +93,14 @@ class Scene: GlideScene {
         entity.transform.usesProposedPosition = false
         
         let spriteNodeComponent = SpriteNodeComponent(nodeSize: CGSize(width: 120, height: 100))
-        spriteNodeComponent.spriteNode.texture = SKTexture(imageNamed: textureName)
         spriteNodeComponent.zPositionContainer = GlideZPositionContainer.camera
         entity.addComponent(spriteNodeComponent)
         
         let touchButtonComponent = TouchButtonComponent(spriteNode: spriteNodeComponent.spriteNode, input: .profiles([(name: inputName, isNegative: isNegative)]))
+        
+        touchButtonComponent.normalTexture = SKTexture(imageNamed: textureName)
+        touchButtonComponent.highlightedTexture = SKTexture(imageNamed: "\(textureName)_hl")
+        
         entity.addComponent(touchButtonComponent)
         
         return entity
