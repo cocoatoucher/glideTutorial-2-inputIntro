@@ -78,6 +78,9 @@ class Scene: GlideScene {
         spriteNodeComponent.zPositionContainer = GlideZPositionContainer.camera
         entity.addComponent(spriteNodeComponent)
         
+        let touchButtonComponent = TouchButtonComponent(spriteNode: spriteNodeComponent.spriteNode, input: .profiles([(name: "Player1_Horizontal", isNegative: true)]))
+        entity.addComponent(touchButtonComponent)
+        
         return entity
     }
     

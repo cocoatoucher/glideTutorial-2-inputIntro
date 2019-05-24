@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		18726A0DE6D43B163E69B252 /* Pods_TutorialiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F6D830B07EA2E5C597D2CAC /* Pods_TutorialiOS.framework */; };
 		4885321AC45C0EE46294D3B3 /* Pods_TutorialtvOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B47BE62A4441720968159C15 /* Pods_TutorialtvOS.framework */; };
+		86B2C78C2298A8AC00C9C05A /* TouchButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B2C78B2298A8AC00C9C05A /* TouchButtonComponent.swift */; };
 		86B9414D228D762E00D048FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B9414C228D762E00D048FC /* AppDelegate.swift */; };
 		86B94152228D762E00D048FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86B94150228D762E00D048FC /* Main.storyboard */; };
 		86B94154228D762E00D048FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86B94153228D762E00D048FC /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		42EC1DA27DC666391A309C1C /* Pods-TutorialmacOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TutorialmacOS.release.xcconfig"; path = "Target Support Files/Pods-TutorialmacOS/Pods-TutorialmacOS.release.xcconfig"; sourceTree = "<group>"; };
 		63A9CFB9FE360495C567E073 /* Pods-TutorialiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TutorialiOS.debug.xcconfig"; path = "Target Support Files/Pods-TutorialiOS/Pods-TutorialiOS.debug.xcconfig"; sourceTree = "<group>"; };
+		86B2C78B2298A8AC00C9C05A /* TouchButtonComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchButtonComponent.swift; sourceTree = "<group>"; };
 		86B94149228D762E00D048FC /* TutorialiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TutorialiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86B9414C228D762E00D048FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		86B94151228D762E00D048FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				86B94193228D911100D048FC /* GameViewController.swift */,
 				86B941AF228D9A1400D048FC /* Scene.swift */,
 				86B941B7228D9C1F00D048FC /* CharacterEntity.swift */,
+				86B2C78B2298A8AC00C9C05A /* TouchButtonComponent.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86B2C78C2298A8AC00C9C05A /* TouchButtonComponent.swift in Sources */,
 				86B94194228D911100D048FC /* GameViewController.swift in Sources */,
 				86B9414D228D762E00D048FC /* AppDelegate.swift in Sources */,
 				86B941B8228D9C1F00D048FC /* CharacterEntity.swift in Sources */,
