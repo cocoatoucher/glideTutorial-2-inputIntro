@@ -25,6 +25,11 @@ class Scene: GlideScene {
         // Add a character entity to the scene at an arbitrary but reasonable position.
         let characterEntity = CharacterEntity(initialNodePosition: CGPoint(x: 200, y: 300))
         addEntity(characterEntity)
+        
+        #if os(iOS)
+        let moveLeftTouchButtonEntity = touchButtonEntity()
+        addEntity(moveLeftTouchButtonEntity)
+        #endif 
     }
     
     func platformEntity(at position: CGPoint) -> GlideEntity {
@@ -52,4 +57,17 @@ class Scene: GlideScene {
         
         return entity
     }
+    
+    #if os(iOS)
+    func touchButtonEntity() -> GlideEntity {
+        let entity = GlideEntity(initialNodePosition: CGPoint.zero)
+        entity.name = "Move Left"
+        
+        let spriteNodeComponent = SpriteNodeComponent(nodeSize: CGSize(width: 120, height: 100))
+        spriteNodeComponent.spriteNode.texture = SKTexture(imageNamed: "button_move_left")
+        entity.addComponent(spriteNodeComponent)
+        
+        return entity
+    }
+    #endif
 }
