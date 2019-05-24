@@ -27,9 +27,14 @@ class Scene: GlideScene {
         addEntity(characterEntity)
         
         #if os(iOS)
-        let moveLeftTouchButtonEntity = touchButtonEntity()
         addEntity(moveLeftTouchButtonEntity)
         #endif 
+    }
+    
+    override func layoutOnScreenItems() {
+        #if os(iOS)
+        layoutTouchControls()
+        #endif
     }
     
     func platformEntity(at position: CGPoint) -> GlideEntity {
@@ -59,15 +64,32 @@ class Scene: GlideScene {
     }
     
     #if os(iOS)
+    lazy var moveLeftTouchButtonEntity: GlideEntity = {
+        return touchButtonEntity()
+    }()
+    
     func touchButtonEntity() -> GlideEntity {
         let entity = GlideEntity(initialNodePosition: CGPoint.zero)
         entity.name = "Move Left"
+        entity.transform.usesProposedPosition = false
         
         let spriteNodeComponent = SpriteNodeComponent(nodeSize: CGSize(width: 120, height: 100))
         spriteNodeComponent.spriteNode.texture = SKTexture(imageNamed: "button_move_left")
+        spriteNodeComponent.zPositionContainer = GlideZPositionContainer.camera
         entity.addComponent(spriteNodeComponent)
         
         return entity
+    }
+    
+    func layoutTouchControls() {
+        if let moveLeftNode = moveLeftTouchButtonEntity.component(ofType: SpriteNodeComponent.self)?.spriteNode {
+            let margin: CGFloat = 30.0
+            let nodePositionX = -size.width / 2 + moveLeftNode.size.width / 2 + margin
+            let nodePositionY = -size.height / 2 + moveLeftNode.size.height / 2 + margin
+            let nodePosition = CGPoint(x: nodePositionX, y: nodePositionY)
+            
+            moveLeftTouchButtonEntity.transform.currentPosition = nodePosition
+        }
     }
     #endif
 }
