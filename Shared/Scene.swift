@@ -30,13 +30,29 @@ class Scene: GlideScene {
         addEntity(moveLeftTouchButtonEntity)
         addEntity(moveRightTouchButtonEntity)
         addEntity(jumpTouchButtonEntity)
-        #endif 
+        #endif
+        
+        replaceHorizontalInput()
     }
     
     override func layoutOnScreenItems() {
         #if os(iOS)
         layoutTouchControls()
         #endif
+    }
+    
+    func replaceHorizontalInput() {
+        Input.shared.removeInputProfilesNamed("Player1_Horizontal")
+        
+        let player1HorizontalAxisProfile = InputProfile(name: "Player1_Horizontal") { profile in
+            profile.positiveKeys = [.rightArrow,
+                                    .controller1DpadRight,
+                                    .controller1LeftThumbstickRight]
+            profile.negativeKeys = [.leftArrow,
+                                    .controller1DpadLeft,
+                                    .controller1LeftThumbstickLeft]
+        }
+        Input.shared.addInputProfile(player1HorizontalAxisProfile)
     }
     
     func platformEntity(at position: CGPoint) -> GlideEntity {
