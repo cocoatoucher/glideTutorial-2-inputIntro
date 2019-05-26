@@ -4,6 +4,7 @@
 
 # Tutorial companion project: Touch buttons and introduction to input
 
+<p align="center">
 <!-- Begin Mailchimp Signup Form -->
 <link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
 <style type="text/css">
@@ -34,6 +35,7 @@
 </div>
 
 <!--End mc_embed_signup-->
+</p>
 
 This is the glide engine tutorial where you can learn how to make touch control buttons and know more about input management in general. 
 
