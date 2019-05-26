@@ -2,9 +2,9 @@
 <img src="https://github.com/cocoatoucher/glideTutorial-2-inputIntro/raw/master/Docs/glide_logo_transparent.png" width="128" max-width="80%" alt="glide"/>
 </p>
 
-# glide engine tutorial companion project: Touch buttons and introduction to input
+# Tutorial companion project: Touch buttons and introduction to input
 
-This is the tutorial where you can learn how to make touch control buttons and know more about input management in general. 
+This is the glide engine tutorial where you can learn how to make touch control buttons and know more about input management in general. 
 
 📺 You can find the tutorial on YouTube glide engine channel or by clicking the gif below.
 
